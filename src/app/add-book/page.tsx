@@ -6,7 +6,7 @@ export default function AddBook () {
     const [author, setAuthor] = useState('');
     const [publisher, setPublisher] = useState('');
     const [pages, setPages] = useState('');
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         const newBook = {
             title: title,

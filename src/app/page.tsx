@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     const fetchBooks = async () => {
         try {
-            const response = await fetch('http://localhost:5500/api/books'); // درخواست به API            
+            const response = await fetch('http://localhost:5500/api/books');          
             const data = await response.json();
             setBooks(data);
             setLoading(false); 
@@ -26,7 +26,6 @@ export default function Home() {
     fetchBooks();
   }, []);
 
-  // تابع برای بروزرسانی وضعیت کتاب
   const updateBookStatus = async (bookId: number, currentStatus: boolean) => {
     try {
       const response = await fetch(`http://localhost:5500/api/books/${bookId}`, {
@@ -34,7 +33,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ isReading: !currentStatus }), // ارسال وضعیت معکوس
+        body: JSON.stringify({ isReading: !currentStatus }), 
       });
   
       if (response.ok) {
@@ -59,7 +58,7 @@ export default function Home() {
       });
   
       if (response.ok) {
-        setBooks(prevBooks => prevBooks?.filter(book => book.id !== bookId)); // حذف کتاب از لیست
+        setBooks(prevBooks => prevBooks?.filter(book => book.id !== bookId)); 
       } else {
         console.error('Failed to delete book', response.status);
       }

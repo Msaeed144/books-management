@@ -73,7 +73,6 @@ function Home() {
         }); };
         fetchBooks();
     }, []);
-    // تابع برای بروزرسانی وضعیت کتاب
     var updateBookStatus = function (bookId, currentStatus) { return __awaiter(_this, void 0, void 0, function () {
         var response, updatedBook_1, error_2;
         return __generator(this, function (_a) {
@@ -121,7 +120,7 @@ function Home() {
                 case 1:
                     response = _a.sent();
                     if (response.ok) {
-                        setBooks(function (prevBooks) { return prevBooks === null || prevBooks === void 0 ? void 0 : prevBooks.filter(function (book) { return book.id !== bookId; }); }); // حذف کتاب از لیست
+                        setBooks(function (prevBooks) { return prevBooks === null || prevBooks === void 0 ? void 0 : prevBooks.filter(function (book) { return book.id !== bookId; }); });
                     }
                     else {
                         console.error('Failed to delete book', response.status);
