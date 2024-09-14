@@ -1,80 +1,76 @@
-const express = require("express");
+/* eslint-disable @typescript-eslint/no-var-requires */
+const express = require('express');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
-const app = express();
 
-// اضافه کردن middleware برای پردازش داده‌های JSON
+const app = express();
+app.use(cors());
 app.use(express.json());
 
-let books = [
-    {
-        id: 1,
-        title: "کتاب اول",
-        author: "رضا",
-        publisher: "انتشارات الف",
-        pages: 150,
-        read: 50 // تعداد صفحات خوانده شده
-    },
-    {
-        id: 2,
-        title: "کتاب دوم",
-        author: "علی",
-        publisher: "انتشارات ب",
-        pages: 200,
-        read: 100
-    }
-];
+const booksFilePath = path.join(__dirname, 'books.json');
 
-// دریافت تمام کتاب‌ها
+const readBooksFromFile = () => {
+    if (fs.existsSync(booksFilePath)) {
+        const data = fs.readFileSync(booksFilePath);
+        return JSON.parse(data);
+    }
+    return [];
+};
+const writeBooksToFile = (books) => {
+    fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
+};
 app.get("/api/books", (req, res) => {
+    const books = readBooksFromFile();
     res.json(books);
 });
-
-// دریافت کتاب بر اساس ID
 app.get("/api/books/:id", (req, res) => {
+    const books = readBooksFromFile();
     const book = books.find(b => b.id === parseInt(req.params.id));
     if (!book) return res.status(404).send("کتاب مورد نظر یافت نشد");
     res.json(book);
 });
-
-// افزودن کتاب جدید
 app.post("/api/books", (req, res) => {
+    const books = readBooksFromFile();
     const newBook = {
         id: books.length + 1,
         title: req.body.title,
         author: req.body.author,
         publisher: req.body.publisher,
-        pages: req.body.pages,  // تعداد صفحات
-        read: req.body.read || 0 // تعداد صفحات خوانده شده، به صورت پیش‌فرض 0
+        pages: req.body.pages,  
+        read: req.body.read || 0,
+        isReading: req.body.isReading || false
     };
     books.push(newBook);
+    writeBooksToFile(books);
     res.status(201).json(newBook);
 });
-
-// ویرایش کتاب (مثلاً تعداد صفحات خوانده شده یا سایر فیلدها)
 app.put("/api/books/:id", (req, res) => {
+    const books = readBooksFromFile();
     const book = books.find(b => b.id === parseInt(req.params.id));
     if (!book) return res.status(404).send("کتاب مورد نظر یافت نشد");
 
-    // به‌روزرسانی اطلاعات کتاب
+    // بروزرسانی مقادیر کتاب
     book.title = req.body.title || book.title;
     book.author = req.body.author || book.author;
     book.publisher = req.body.publisher || book.publisher;
     book.pages = req.body.pages !== undefined ? req.body.pages : book.pages;
     book.read = req.body.read !== undefined ? req.body.read : book.read;
-
+    book.isReading = req.body.isReading !== undefined ? req.body.isReading : book.isReading; // اضافه شده
+    
+    writeBooksToFile(books);
     res.json(book);
 });
 
-// حذف کتاب
 app.delete("/api/books/:id", (req, res) => {
+    const books = readBooksFromFile();
     const bookIndex = books.findIndex(b => b.id === parseInt(req.params.id));
     if (bookIndex === -1) return res.status(404).send("کتاب مورد نظر یافت نشد");
-
     const deletedBook = books.splice(bookIndex, 1);
+    writeBooksToFile(books);
     res.json(deletedBook);
 });
-
-// پورت سرور
 const port = process.env.APP_PORT || 3001;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
