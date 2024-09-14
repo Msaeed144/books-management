@@ -2,26 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.vazirFont {
+  font-family: Vazir , Arial, Helvetica, sans-serif;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.boldFont {
+  font-weight: 700;
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@font-face {
+  font-family: Vazir;
+  src: url("./fonts/Vazir-Medium-FD-WOL.woff") format("woff");
+  font-weight: 500;
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@font-face {
+  font-family: Vazir;
+  src: url("./fonts/Vazir-Bold-FD-WOL.woff") format("woff");
+  font-weight: 700; 
 }
