@@ -10,6 +10,7 @@ export interface BooksInterface {
   export interface BookComponentProps {
     book: BooksInterface;
     updateBookStatus:(id: number, isReading: boolean) => void
+    deleteBook:(bookId : number) => void
   }
   export interface MyBookInterface{
     book:BooksInterface

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Book from '@/components/Books'
 import Link from "next/link";
 
+
 export default function Home() {
   const [books, setBooks] = useState<BooksInterface[]>(); 
   const [loading, setLoading] = useState(true);
@@ -51,7 +52,22 @@ export default function Home() {
     }
   };
   
-
+  const deleteBook = async (bookId: number) => {
+    try {
+      const response = await fetch(`http://localhost:5500/api/books/${bookId}`, {
+        method: 'DELETE',
+      });
+  
+      if (response.ok) {
+        setBooks(prevBooks => prevBooks?.filter(book => book.id !== bookId)); // حذف کتاب از لیست
+      } else {
+        console.error('Failed to delete book', response.status);
+      }
+    } catch (error) {
+      console.error('Error deleting book', error);
+    }
+  };
+  
   if (loading) {
     return <p>درحال دریافت...</p>;
   }
@@ -67,7 +83,7 @@ export default function Home() {
           <h3 className="text-lg mb-2">لیست کتاب‌ها</h3>
           <div className="flex w-full mx-auto gap-3 overflow-x-scroll whitespace-nowrap">
             {books?.map(book => (
-              <Book key={book.id} book={book} updateBookStatus={updateBookStatus} />
+              <Book key={book.id} book={book} updateBookStatus={updateBookStatus} deleteBook={deleteBook}/>
             ))}
           </div>
           <p className="text-gray-700 mt-2">کتاب هایی که در حال مطالعه هستند وارد صفحه ی <Link className="text-blue-500 hover:text-blue-700" href="/my-books">قفسه ی من </Link> می شوند و در آن صفحه قابل مدیریت هستند</p>

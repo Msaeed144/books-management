@@ -109,6 +109,32 @@ function Home() {
             }
         });
     }); };
+    var deleteBook = function (bookId) { return __awaiter(_this, void 0, void 0, function () {
+        var response, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, fetch("http://localhost:5500/api/books/" + bookId, {
+                            method: 'DELETE'
+                        })];
+                case 1:
+                    response = _a.sent();
+                    if (response.ok) {
+                        setBooks(function (prevBooks) { return prevBooks === null || prevBooks === void 0 ? void 0 : prevBooks.filter(function (book) { return book.id !== bookId; }); }); // حذف کتاب از لیست
+                    }
+                    else {
+                        console.error('Failed to delete book', response.status);
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_3 = _a.sent();
+                    console.error('Error deleting book', error_3);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); };
     if (loading) {
         return React.createElement("p", null, "\u062F\u0631\u062D\u0627\u0644 \u062F\u0631\u06CC\u0627\u0641\u062A...");
     }
@@ -121,7 +147,7 @@ function Home() {
         React.createElement("div", { className: "w-full" },
             React.createElement("div", { className: "w-[85%] mx-auto" },
                 React.createElement("h3", { className: "text-lg mb-2" }, "\u0644\u06CC\u0633\u062A \u06A9\u062A\u0627\u0628\u200C\u0647\u0627"),
-                React.createElement("div", { className: "flex w-full mx-auto gap-3 overflow-x-scroll whitespace-nowrap" }, books === null || books === void 0 ? void 0 : books.map(function (book) { return (React.createElement(Books_1["default"], { key: book.id, book: book, updateBookStatus: updateBookStatus })); })),
+                React.createElement("div", { className: "flex w-full mx-auto gap-3 overflow-x-scroll whitespace-nowrap" }, books === null || books === void 0 ? void 0 : books.map(function (book) { return (React.createElement(Books_1["default"], { key: book.id, book: book, updateBookStatus: updateBookStatus, deleteBook: deleteBook })); })),
                 React.createElement("p", { className: "text-gray-700 mt-2" },
                     "\u06A9\u062A\u0627\u0628 \u0647\u0627\u06CC\u06CC \u06A9\u0647 \u062F\u0631 \u062D\u0627\u0644 \u0645\u0637\u0627\u0644\u0639\u0647 \u0647\u0633\u062A\u0646\u062F \u0648\u0627\u0631\u062F \u0635\u0641\u062D\u0647 \u06CC ",
                     React.createElement(link_1["default"], { className: "text-blue-500 hover:text-blue-700", href: "/my-books" }, "\u0642\u0641\u0633\u0647 \u06CC \u0645\u0646 "),
