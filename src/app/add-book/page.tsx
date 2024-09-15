@@ -2,12 +2,13 @@
 import { useState } from "react";
 
 export default function AddBook() {
+    // Building the required states
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [publisher, setPublisher] = useState('');
     const [pages, setPages] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // برای نمایش خطا
-
+// submit function
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 

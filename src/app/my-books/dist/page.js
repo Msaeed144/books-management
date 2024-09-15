@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 "use strict";
@@ -42,9 +43,12 @@ var MyBook_1 = require("@/components/MyBook");
 var react_1 = require("react");
 function MyBooks() {
     var _this = this;
+    // Building the required states
+    //loading is Not used yet
     var _a = react_1.useState(), books = _a[0], setBooks = _a[1];
     var _b = react_1.useState(true), loading = _b[0], setLoading = _b[1];
     var _c = react_1.useState(null), error = _c[0], setError = _c[1];
+    //useEffect and fetch data
     react_1.useEffect(function () {
         var fetchBooks = function () { return __awaiter(_this, void 0, void 0, function () {
             var response, data, filteredData, error_1;

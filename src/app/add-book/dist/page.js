@@ -40,11 +40,13 @@ exports.__esModule = true;
 var react_1 = require("react");
 function AddBook() {
     var _this = this;
+    // Building the required states
     var _a = react_1.useState(''), title = _a[0], setTitle = _a[1];
     var _b = react_1.useState(''), author = _b[0], setAuthor = _b[1];
     var _c = react_1.useState(''), publisher = _c[0], setPublisher = _c[1];
     var _d = react_1.useState(''), pages = _d[0], setPages = _d[1];
     var _e = react_1.useState(''), errorMessage = _e[0], setErrorMessage = _e[1]; // برای نمایش خطا
+    // submit function
     var handleSubmit = function (e) { return __awaiter(_this, void 0, void 0, function () {
         var newBook, response, error_1;
         return __generator(this, function (_a) {

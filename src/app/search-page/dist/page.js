@@ -48,6 +48,7 @@ function Search() {
     var _c = react_1.useState(null), error = _c[0], setError = _c[1];
     var _d = react_1.useState(""), search = _d[0], setSearch = _d[1];
     react_1.useEffect(function () {
+        //fetch book
         var fetchBooks = function () { return __awaiter(_this, void 0, void 0, function () {
             var response, data, filteredBooks, error_1;
             return __generator(this, function (_a) {
@@ -81,6 +82,7 @@ function Search() {
         }); };
         fetchBooks();
     }, [search]);
+    //update book (read or not)
     var updateBookStatus = function (bookId, currentStatus) { return __awaiter(_this, void 0, void 0, function () {
         var response, updatedBook_1, error_2;
         return __generator(this, function (_a) {
@@ -116,6 +118,7 @@ function Search() {
             }
         });
     }); };
+    //delete book function
     var deleteBook = function (bookId) { return __awaiter(_this, void 0, void 0, function () {
         var response, error_3;
         return __generator(this, function (_a) {

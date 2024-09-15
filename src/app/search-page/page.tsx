@@ -11,6 +11,7 @@ export default function Search() {
   const [error, setError] = useState<string | null>(null);
   const [search , setSearch] = useState("")
   useEffect(() => {
+    //fetch book
     const fetchBooks = async () => {
       try {
         const response = await fetch("http://localhost:5500/api/books"); // درخواست به API
@@ -31,7 +32,7 @@ export default function Search() {
     };
     fetchBooks();
   }, [search]);
-  
+  //update book (read or not)
   const updateBookStatus = async (bookId: number, currentStatus: boolean) => {
     try {
       const response = await fetch(`http://localhost:5500/api/books/${bookId}`, {
@@ -56,7 +57,7 @@ export default function Search() {
       console.error('Error updating book status', error);
     }
   };
-  
+  //delete book function
   const deleteBook = async (bookId: number) => {
     try {
       const response = await fetch(`http://localhost:5500/api/books/${bookId}`, {
