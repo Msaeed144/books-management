@@ -81,7 +81,7 @@ export default function Home() {
         <div className="w-[85%] mx-auto">
           <h3 className="text-lg mb-2">لیست کتاب‌ها</h3>
           <p className="text-gray-700 my-4">کتاب هایی که در حال مطالعه هستند وارد صفحه ی <Link className="text-blue-500 hover:text-blue-700" href="/my-books">قفسه ی من </Link> می شوند و در آن صفحه قابل مدیریت هستند</p>
-          <div className=" grid grid-cols-5 gap-4  mx-auto ">
+          <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4  mx-auto ">
             {books?.map(book => (
               <Book key={book.id} book={book} updateBookStatus={updateBookStatus} deleteBook={deleteBook}/>
             ))}

@@ -4,7 +4,7 @@ var react_1 = require("react");
 var material_1 = require("@mui/material");
 var Books = function (_a) {
     var book = _a.book, updateBookStatus = _a.updateBookStatus, deleteBook = _a.deleteBook;
-    return (react_1["default"].createElement("div", { className: " overflow-auto text-center min-w-[175px] max-w-[175px] border rounded-md border-gray-300 px-2 py-4 bg-gray-50 shadow-xl flex flex-col" },
+    return (react_1["default"].createElement("div", { className: " overflow-auto text-center min-w-[130px] max-w-[130px] md:min-w-[190px] md:max-w-[190px] border rounded-md border-gray-300 px-2 py-4 bg-gray-50 shadow-xl flex flex-col" },
         react_1["default"].createElement(material_1.Tooltip, { title: "\u062D\u0630\u0641", placement: "top-end" },
             react_1["default"].createElement("div", { onClick: function () { return deleteBook(book.id); }, className: " cursor-pointer" },
                 react_1["default"].createElement("svg", { width: "20px", height: "20px", viewBox: "0 0 32 32", version: "1.1", xmlns: "http://www.w3.org/2000/svg", fill: "#ef4444", stroke: "#ef4444" },
