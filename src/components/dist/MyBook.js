@@ -38,9 +38,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var react_1 = require("react");
 var MyBook = function (_a) {
+    var _b;
     var book = _a.book;
-    var _b = react_1.useState(book.read.toString()), readPage = _b[0], setReadPage = _b[1];
-    var _c = react_1.useState(book.read), localRead = _c[0], setLocalRead = _c[1];
+    var _c = react_1.useState((_b = book.read) === null || _b === void 0 ? void 0 : _b.toString()), readPage = _c[0], setReadPage = _c[1];
+    var _d = react_1.useState(book.read), localRead = _d[0], setLocalRead = _d[1];
     var updateReadPage = function (e) { return __awaiter(void 0, void 0, void 0, function () {
         var response, updatedBook, error_1;
         return __generator(this, function (_a) {

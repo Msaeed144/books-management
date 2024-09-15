@@ -44,12 +44,19 @@ function AddBook() {
     var _b = react_1.useState(''), author = _b[0], setAuthor = _b[1];
     var _c = react_1.useState(''), publisher = _c[0], setPublisher = _c[1];
     var _d = react_1.useState(''), pages = _d[0], setPages = _d[1];
+    var _e = react_1.useState(''), errorMessage = _e[0], setErrorMessage = _e[1]; // برای نمایش خطا
     var handleSubmit = function (e) { return __awaiter(_this, void 0, void 0, function () {
         var newBook, response, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
+                    // چک کردن اینکه همه فیلدها پر شده باشند
+                    if (!title || !author || !publisher || !pages) {
+                        setErrorMessage('لطفاً همه فیلدها را پر کنید.');
+                        setTimeout(function () { return setErrorMessage(''); }, 3000); // خطا بعد از ۳ ثانیه پاک می‌شود
+                        return [2 /*return*/];
+                    }
                     newBook = {
                         title: title,
                         author: author,
@@ -105,6 +112,7 @@ function AddBook() {
                     React.createElement("div", { className: "flex" },
                         React.createElement("label", { htmlFor: "pages", className: "mx-2" }, "\u062A\u0639\u062F\u0627\u062F \u0635\u0641\u062D\u0627\u062A"),
                         React.createElement("input", { value: pages, onChange: function (e) { return setPages(e.target.value); }, type: "number", id: "pages", className: "bg-transparent border rounded-md border-gray-400" }))),
+                errorMessage && (React.createElement("p", { className: "text-red-500 mt-2 text-center" }, errorMessage)),
                 React.createElement("button", { type: "submit", className: "bg-green-400 text-white hover:bg-green-500 w-1/3 mx-auto rounded-md p-2" }, "\u0627\u0636\u0627\u0641\u0647 \u06A9\u0631\u062F\u0646 \u06A9\u062A\u0627\u0628")))));
 }
 exports["default"] = AddBook;

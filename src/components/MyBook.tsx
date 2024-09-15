@@ -2,7 +2,7 @@ import { MyBookInterface } from "@/tools/interfaces";
 import { useState } from "react";
 
 const MyBook: React.FC<MyBookInterface> = ({ book }) => {
-  const [readPage, setReadPage] = useState(book.read.toString()); 
+  const [readPage, setReadPage] = useState(book.read?.toString()); 
   const [localRead, setLocalRead] = useState(book.read); 
 
   const updateReadPage = async (e: React.FormEvent) => {

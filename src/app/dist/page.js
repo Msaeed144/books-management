@@ -146,10 +146,10 @@ function Home() {
         React.createElement("div", { className: "w-full" },
             React.createElement("div", { className: "w-[85%] mx-auto" },
                 React.createElement("h3", { className: "text-lg mb-2" }, "\u0644\u06CC\u0633\u062A \u06A9\u062A\u0627\u0628\u200C\u0647\u0627"),
-                React.createElement("div", { className: "flex w-full mx-auto gap-3 overflow-x-scroll whitespace-nowrap" }, books === null || books === void 0 ? void 0 : books.map(function (book) { return (React.createElement(Books_1["default"], { key: book.id, book: book, updateBookStatus: updateBookStatus, deleteBook: deleteBook })); })),
-                React.createElement("p", { className: "text-gray-700 mt-2" },
+                React.createElement("p", { className: "text-gray-700 my-4" },
                     "\u06A9\u062A\u0627\u0628 \u0647\u0627\u06CC\u06CC \u06A9\u0647 \u062F\u0631 \u062D\u0627\u0644 \u0645\u0637\u0627\u0644\u0639\u0647 \u0647\u0633\u062A\u0646\u062F \u0648\u0627\u0631\u062F \u0635\u0641\u062D\u0647 \u06CC ",
                     React.createElement(link_1["default"], { className: "text-blue-500 hover:text-blue-700", href: "/my-books" }, "\u0642\u0641\u0633\u0647 \u06CC \u0645\u0646 "),
-                    " \u0645\u06CC \u0634\u0648\u0646\u062F \u0648 \u062F\u0631 \u0622\u0646 \u0635\u0641\u062D\u0647 \u0642\u0627\u0628\u0644 \u0645\u062F\u06CC\u0631\u06CC\u062A \u0647\u0633\u062A\u0646\u062F")))));
+                    " \u0645\u06CC \u0634\u0648\u0646\u062F \u0648 \u062F\u0631 \u0622\u0646 \u0635\u0641\u062D\u0647 \u0642\u0627\u0628\u0644 \u0645\u062F\u06CC\u0631\u06CC\u062A \u0647\u0633\u062A\u0646\u062F"),
+                React.createElement("div", { className: " grid grid-cols-5 gap-4  mx-auto " }, books === null || books === void 0 ? void 0 : books.map(function (book) { return (React.createElement(Books_1["default"], { key: book.id, book: book, updateBookStatus: updateBookStatus, deleteBook: deleteBook })); }))))));
 }
 exports["default"] = Home;
